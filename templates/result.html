@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>結果を表示します</h1>
+        {% extends "base.html"%}
+        
+        {% block content %}
+                
+            <form action="{{url_for('delete_url')}}" method="post" enctype="multipart/form-data">
+            
+            <input type="submit" value="削除">
+
+            <ul>    
+            {% for entry in result_srch %}   
+             <li>
+             <input type ="checkbox" name="action" value="{{entry[2]}}">{{entry[0]}}:{{entry[1]}}:
+             <a href="{{entry[2]}}">link</a><br>
+             </li>    
+            {% endfor %}
+            </ul> 
+            
+            </form>  
+            <button><a href="/">戻る</a></button>
+        {% endblock %}
+        
+        
+</body>
+</html>
+
+

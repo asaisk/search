@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<!-- <html lang="en">     -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href="../static/css/reset.css">
+    <link rel = "stylesheet" href="../static/css/style.css">
+    
+    <!-- <link rel = "stylesheet" href="style.css"> -->
+    <!-- <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+    <title>Document</title>
+</head>
+<body>
+<div class="wrapper">
+    <h1>検索したい会社を入力してください</h1>
+        {% extends "base.html"%}
+        {% block content %}
+        <form action= "{{ url_for('send')}}" method="post">        
+          <input type ="text" name ="msg" value="">
+          <h1>検索したいキーワードを入力してください</h1>  
+          <input type ="text" name ="keyword" value="">
+          <!-- <input type="radio" name="keyword" value="不祥事">不祥事
+          <input type="radio" name="keyword" value="格下げ">格下げ -->
+
+          <input type ="submit" value="送信">    
+        </form>
+              
+        
+        {% if alert %}
+        <p>{{ alert}}</p>
+        {% endif %}
+        
+    
+
+        <!-- <input type="submit" value="削除"> -->
+
+        <form action="{{url_for('delete_data')}}" method="post" enctype="multipart/form-data">
+        
+        <input type="submit" value="削除">
+
+         <ul>
+             {% for entry in result %}
+             <li>
+             <input type ="checkbox" name="action" value="{{entry[0]}}">{{entry[1]}}:{{entry[2]}}:{{entry[3]}}
+
+             </li>  
+             {% endfor %}
+         </ul>
+                     
+       
+        </form> 
+              
+
+        <button><a href="./srch">検索</a></button>
+       
+
+        <!-- <p>検索結果</p> -->
+            <!-- {% for entry in result_srch %}
+                        <p>{{entry[0]}},{{entry[1]}}</p><a href="{{entry[2]}}">link</a>
+            
+            {% endfor %}
+                    
+        {% endblock %}  -->
+       
+       
+       
+               
+        <!-- <ul>
+            {% for entry in result_srch %}
+            <li>
+            <input type ="checkbox" name="action" value="{{entry[0]}}">{{entry[1]}}:{{entry[2]}}:{{entry[3]}}
+            </li>  
+            {% endfor %}
+        </ul>     -->
+       
+
+</div>
+</body>
+</html>
+
+
+
